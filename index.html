@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlgoScape — Visual Algorithms in Motion</title>
+    <meta name="description" content="Experience algorithms visually through pure CSS animations. A creative journey through Data Structures and Algorithms.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+ 
+  .editor-container {
+    position: relative;
+    width: 50%;
+    max-width: 960px;
+    height: 550px;
+    border: 4px solid #6C6C6C;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #2a2a2a, #222222, #1a1a1a);
+    overflow: hidden;
+    box-shadow: 0 0 15px 10px rgba(22, 43, 161, 0.8);
+    transform: scale(0.95);
+    width: 500px;
+    
+ 
+  perspective: 1000px;
+  transition: transform 0.3s ease; 
+  }
+.editor-container:hover {
+  transform: rotateX(5deg) rotateY(-5deg) scale(1.02); 
+}
+
+  /* --- Neon Glow Layer --- */
+  .glow-layer {
+    position: absolute;
+    top: -40px; left: -40px; right: -40px; bottom: -40px;
+    background: linear-gradient(90deg, purple, indigo, blue);
+    opacity: 0.4;
+    filter: blur(60px);
+    animation: pulse 4s infinite alternate;
+    pointer-events: none;
+    border-radius: 40px;
+    z-index: 1;
+    /* width: 500px; */
+  }
+
+  @keyframes pulse {
+    0% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+    100% { opacity: 0.3; }
+  }
+
+  /* --- Inner Gradient Layer --- */
+  .inner-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, #ff00ff, #00ffff);
+    opacity: 0.1;
+    filter: blur(20px);
+    border-radius: 30px;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* --- Code Background --- */
+  .code-bg {
+    position: absolute;
+    inset: 12px;
+    background: #000;
+    border-radius: 20px;
+    overflow: auto;
+    z-index: 3;
+    padding-top: 50px;
+    max-width: 500px;
+  }
+
+  /* --- Top Bar --- */
+  .top-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    background: rgba(0,0,0,0.85);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    backdrop-filter: blur(8px);
+    z-index: 4;
+  }
+
+  .circle {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+
+  .circle.red { background: #f55; }
+  .circle.yellow { background: #ffb800; }
+  .circle.green { background: #0f0; }
+
+  .top-bar .filename {
+    color: #ccc;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-left: 10px;
+  }
+
+  .top-bar .status {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+    color: #0f0;
+  }
+
+  .status-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #0f0;
+    margin-right: 4px;
+    animation: pulse 1.5s infinite alternate;
+  }
+
+  /* --- Code Lines --- */
+  .code-lines {
+    padding: 16px;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: #ccc;
+    font-family: 'Fira Code', monospace;
+  }
+
+  .line {
+    display: flex;
+    align-items: flex-start;
+    padding: 2px 8px;
+    border-radius: 4px;
+    transition: background 0.2s;
+  }
+
+  .line:hover { background: rgba(255,255,255,0.05); }
+
+  .line-number {
+    width: 40px;
+    color: #666;
+    user-select: none;
+    flex-shrink: 0;
+  }
+
+  .comment { color: #6a9955; }
+  .keyword { color: #569cd6; }
+  .string { color: #d69d85; }
+  .function { color: #c586c0; }
+
+</style>
+</head>
+<body>
+    <header class="main-header home-header">
+        <nav class="navbar">
+            <div class="container">
+                <a href="/index.html" class="logo">AlgoScape</a>
+                <input type="checkbox" id="menu-toggle" class="menu-toggle">
+                <label for="menu-toggle" class="menu-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+                &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                <ul class="nav-menu">
+                    <li><a href="/index.html" class="active">Home</a></li>
+                    <li><a href="/algorithms.html">Algorithms</a></li>
+                    <li><a href="/showcase.html">Showcase</a></li>
+                    <li><a href="/tutorials.html">Tutorials</a></li>
+                    <li><a href="/about.html">About</a></li>
+                    <li><a href="/contact.html">Contact</a></li>
+                    <li><a href=" https://coderarmy.in/#home" target="_blank" class="cta-button">Join CoderArmy</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="aurora-bg"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Experience Algorithms in Motion</h1>
+            <p class="hero-subtitle">A CSS-only journey through Data Structures and Algorithms</p>
+            <div class="hero-buttons">
+                <a href="/algorithms.html" class="btn btn-primary">Explore Visuals</a>
+                <a href="/resources.html" class="btn btn-outline">Learn DSA</a>
+            </div>
+        </div>
+        <div class="editor-container">
+  <div class="glow-layer"></div>
+  <div class="inner-gradient"></div>
+
+  <div class="code-bg">
+    <div class="top-bar">
+      <div class="circle red"></div>
+      <div class="circle yellow"></div>
+      <div class="circle green"></div>
+      <div class="filename">CoderArmy.cpp</div>
+      <div class="status">
+        <div class="status-dot"></div> Live Coding
+      </div>
+    </div>
+
+    <div class="code-lines">
+      <div class="line"><span class="line-number">01</span><span class="keyword">#include &lt;iostream&gt;</span></div>
+      <div class="line"><span class="line-number">02</span><span class="keyword">#include &lt;vector&gt;</span></div>
+      <div class="line"><span class="line-number">03</span><span class="keyword">using namespace std;</span></div>
+      <div class="line"><span class="line-number">04</span></div>
+      <div class="line"><span class="line-number">05</span><span class="keyword">class</span> <span class="function">CoderArmy</span> {</div>
+      <div class="line"><span class="line-number">06</span><span>  // code...</span></div>
+    </div>
+  </div>
+</div>
+<div class="introduction">
+  <img src="https://i.pinimg.com/736x/65/d6/b6/65d6b6447e454e4d6a45a4e056d5cb6e.jpg" style="z-index: -1;position: absolute; height: 100vh;width: 100vw; top: 0; left: 0; opacity:0.2 ;  ">
+</div>
+    </section>
+   
+
+    <section class="features">
+        <div class="container" style="z-index: -2;">
+            <h2 class="section-title">Why AlgoScape?</h2>
+            <div class="features-grid" style="z-index: 1;">
+                <div class="feature-card">
+                  
+                    <div class="feature-icon">🎨</div>
+                    <h3>Pure CSS Animations</h3>
+                    <p>Every visualization is crafted with CSS keyframes, transitions, and transforms. No JavaScript required!</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧠</div>
+                    <h3>Visual Learning</h3>
+                    <p>Complex algorithms become intuitive through motion, color, and interactive visual storytelling.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Fully Responsive</h3>
+                    <p>Perfect experience across all devices - mobile, tablet, and desktop with adaptive layouts.</p>
+                </div>
+
+            </div>
+            <!-- <img src="https://w1.pngwing.com/pngs/499/103/png-transparent-blockchain-structure-hyperledger-technology-organization-business-data-distributed-ledger-media.png"  class="autoRotate">  -->
+             <div class="orb autoRotate" >
+
+
+
+             </div>
+        </div>
+    </section>
+
+
+    <div class="flag">
+    <h1 class="indian">INDIAN ARMY</h1>
+    
+    <video class="indian-army" height="290px" width="1450px" autoplay loop muted>
+        <source src="https://cdn.pixabay.com/video/2020/04/21/36776-412873684_large.mp4" type="video/mp4" >
+    </video>
+</div>
+<div class="promo">
+    <video src="" controls loop autoplay >
+      <source src="Strike-promo.mp4" type="mp4/video">
+    </video>
+</div>
+
+
+    <section class="cta-section">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="container">
+            <h2>Ready to Master Algorithms?</h2>
+            <p>Join thousands learning DSA with CoderArmy</p>
+            <a href=" https://coderarmy.in/#home" target="_blank" class="btn btn-glow">Start Your Journey</a>
+        </div>
+    </section>
+
+
+    <footer class="footer">
+        <div class="gradient-line"></div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>AlgoScape</h3>
+                    <p>Visual Algorithms in Motion</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/sujal-010/Hackathon-miniproj1">GitHub</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+                <div class="footer-info">
+                    <p>Built for STRIKE Hackathon</p>
+                    <p>© 2025 CoderArmy</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

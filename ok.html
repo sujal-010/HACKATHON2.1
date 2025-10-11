@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neon Code Editor</title>
+<style>
+  /* --- Base Styles --- */
+  body {
+    background: #121212;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Fira Code', monospace;
+  }
+
+  /* --- Outer Container --- */
+  .editor-container {
+    position: relative;
+    width: 90%;
+    max-width: 960px;
+    height: 600px;
+    border: 4px solid #6C6C6C;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #2a2a2a, #222222, #1a1a1a);
+    overflow: hidden;
+    box-shadow: 0 0 40px rgba(0,0,0,0.8);
+    transform: scale(0.95);
+  }
+
+  /* --- Neon Glow Layer --- */
+  .glow-layer {
+    position: absolute;
+    top: -40px; left: -40px; right: -40px; bottom: -40px;
+    background: linear-gradient(90deg, purple, indigo, blue);
+    opacity: 0.4;
+    filter: blur(60px);
+    animation: pulse 4s infinite alternate;
+    pointer-events: none;
+    border-radius: 40px;
+    z-index: 1;
+  }
+
+  @keyframes pulse {
+    0% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+    100% { opacity: 0.3; }
+  }
+
+  /* --- Inner Gradient Layer --- */
+  .inner-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, #ff00ff, #00ffff);
+    opacity: 0.1;
+    filter: blur(20px);
+    border-radius: 30px;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  /* --- Code Background --- */
+  .code-bg {
+    position: absolute;
+    inset: 10px;
+    background: #000;
+    border-radius: 20px;
+    overflow: auto;
+    z-index: 3;
+    padding-top: 50px;
+   
+  }
+
+  /* --- Top Bar --- */
+  .top-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    background: rgba(0,0,0,0.85);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    backdrop-filter: blur(8px);
+    z-index: 4;
+  }
+
+  .circle {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+
+  .circle.red { background: #f55; }
+  .circle.yellow { background: #ffb800; }
+  .circle.green { background: #0f0; }
+
+  .top-bar .filename {
+    color: #ccc;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-left: 10px;
+  }
+
+  .top-bar .status {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+    color: #0f0;
+  }
+
+  .status-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #0f0;
+    margin-right: 4px;
+    animation: pulse 1.5s infinite alternate;
+  }
+
+  /* --- Code Lines --- */
+  .code-lines {
+    padding: 16px;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: #ccc;
+    font-family: 'Fira Code', monospace;
+  }
+
+  .line {
+    display: flex;
+    align-items: flex-start;
+    padding: 2px 8px;
+    border-radius: 4px;
+    transition: background 0.2s;
+  }
+
+  .line:hover { background: rgba(255,255,255,0.05); }
+
+  .line-number {
+    width: 40px;
+    color: #666;
+    user-select: none;
+    flex-shrink: 0;
+  }
+
+  .comment { color: #6a9955; }
+  .keyword { color: #569cd6; }
+  .string { color: #d69d85; }
+  .function { color: #c586c0; }
+
+</style>
+</head>
+<body>
+
+<div class="editor-container">
+  <div class="glow-layer"></div>
+  <div class="inner-gradient"></div>
+
+  <div class="code-bg">
+    <div class="top-bar">
+      <div class="circle red"></div>
+      <div class="circle yellow"></div>
+      <div class="circle green"></div>
+      <div class="filename">CoderArmy.cpp</div>
+      <div class="status">
+        <div class="status-dot"></div> Live Coding
+      </div>
+    </div>
+
+    <div class="code-lines">
+      <div class="line"><span class="line-number">01</span><span class="keyword">#include &lt;iostream&gt;</span></div>
+      <div class="line"><span class="line-number">02</span><span class="keyword">#include &lt;vector&gt;</span></div>
+      <div class="line"><span class="line-number">03</span><span class="keyword">using namespace std;</span></div>
+      <div class="line"><span class="line-number">04</span></div>
+      <div class="line"><span class="line-number">05</span><span class="keyword">class</span> <span class="function">CoderArmy</span> {</div>
+      <div class="line"><span class="line-number">06</span><span>  // code...</span></div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

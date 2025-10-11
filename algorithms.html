@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithm Visualizations — AlgoScape</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root{
+      --bar-width: 60px;
+      --gap: 16px;
+      --duration: 12s; /* total animation length */
+      --steps: 5; /* number of elements */
+      --bg: #0f172a;
+      --card: #0b1220;
+      --accent: #06b6d4;
+      --muted: #94a3b8;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;min-height:100vh;display:grid;place-items:center;background:linear-gradient(180deg,#071029 0%,#041025 100%);font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;color:#e6eef6;
+    }
+    .wrap{width:min(900px,96vw);background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:28px;border-radius:16px;box-shadow:0 10px 30px rgba(2,6,23,0.6)}
+    h1{font-size:20px;margin:0 0 12px}
+    p{margin:0 0 18px;color:var(--muted);font-size:13px}
+
+    /* container for bars */
+    .array{
+      display:flex;gap:var(--gap);align-items:end;justify-content:center;padding:18px;background:linear-gradient(90deg, rgba(255,255,255,0.01), transparent);border-radius:12px;min-height:260px;
+      position:relative;overflow:hidden
+    }
+
+    .bar{
+      --h:120px; /* default height fallback */
+      width:var(--bar-width);display:flex;align-items:flex-end;justify-content:center;position:relative;border-radius:10px;padding:8px;color:#031527;font-weight:700;box-shadow:0 6px 16px rgba(2,6,23,0.5);
+      background:linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.85));
+      transition:transform 220ms ease;
+    }
+    .bar .val{font-size:14px}
+    /* values set via inline style heights */
+
+    /* label row */
+    .indices{display:flex;gap:var(--gap);justify-content:center;margin-top:12px;color:var(--muted);font-size:13px}
+    .indices .idx{width:var(--bar-width);text-align:center}
+
+    /* make it look like "sorting" — highlight when swapping using additional animations */
+    .pulse{animation:pop 0.25s ease;}
+    @keyframes pop{from{transform:translateY(0)}50%{transform:translateY(-8px) scale(1.05)}to{transform:translateY(0)}}
+
+    /* We'll animate 'order' for each bar. Each bar has its own keyframes that set order at the 6 step markers (0%,20%,40%,60%,80%,100%). */
+
+    /* --- BAR 5 --- value 5 animation (orders per step: [0,1,1,1,2,2]) */
+    @keyframes move-5{
+      0%   { order:0 }
+      20%  { order:1 }
+      40%  { order:1 }
+      60%  { order:1 }
+      80%  { order:2 }
+      100% { order:2 }
+    }
+    /* --- BAR 3 --- value 3 (orders: [1,0,0,0,0,1]) */
+    @keyframes move-3{
+      0%   { order:1 }
+      20%  { order:0 }
+      40%  { order:0 }
+      60%  { order:0 }
+      80%  { order:0 }
+      100% { order:1 }
+    }
+    /* --- BAR 8 --- value 8 (orders: [2,2,3,4,4,4]) */
+    @keyframes move-8{
+      0%   { order:2 }
+      20%  { order:2 }
+      40%  { order:3 }
+      60%  { order:4 }
+      80%  { order:4 }
+      100% { order:4 }
+    }
+    /* --- BAR 1 --- value 1 (orders: [3,3,2,2,1,0]) */
+    @keyframes move-1{
+      0%   { order:3 }
+      20%  { order:3 }
+      40%  { order:2 }
+      60%  { order:2 }
+      80%  { order:1 }
+      100% { order:0 }
+    }
+    /* --- BAR 6 --- value 6 (orders: [4,4,4,3,3,3]) */
+    @keyframes move-6{
+      0%   { order:4 }
+      20%  { order:4 }
+      40%  { order:4 }
+      60%  { order:3 }
+      80%  { order:3 }
+      100% { order:3 }
+    }
+
+    /* apply animations */
+    .v5{animation:move-5 var(--duration) linear infinite}
+    .v3{animation:move-3 var(--duration) linear infinite}
+    .v8{animation:move-8 var(--duration) linear infinite}
+    .v1{animation:move-1 var(--duration) linear infinite}
+    .v6{animation:move-6 var(--duration) linear infinite}
+
+    /* small visual tweaks: taller bars for larger numbers */
+    .h-5{--h:140px}
+    .h-3{--h:90px}
+    .h-8{--h:190px}
+    .h-1{--h:40px}
+    .h-6{--h:160px}
+
+    /* use the --h variable for bar height */
+    .bar{height:var(--h);align-items:flex-end}
+
+    /* nice gradient accent for sorted state (end of animation) */
+    @keyframes glow{
+      0%{box-shadow:0 6px 14px rgba(6,182,212,0.06)}
+      100%{box-shadow:0 18px 48px rgba(6,182,212,0.14)}
+    }
+    .sorted{animation:glow 1s ease-in-out 0s 1 forwards}
+
+    /* small footer */
+    .meta{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
+    .btn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:10px;color:var(--muted);font-size:13px}
+
+    /* responsive */
+    @media (max-width:520px){:root{--bar-width:46px;--gap:10px}}
+
+    /* .algo-card {
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 650px;
+            width: 95%;
+            border: 1px solid #e9ecef;
+        } */
+
+        .algo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+
+        .algo-header h2 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin: 0;
+            color: #212529;
+        }
+
+        .algo-header p {
+            font-size: 0.95rem;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+
+        .complexity {
+            font-size: 0.8rem;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: white;
+        }
+
+        .complexity-graph {
+            background-color: #0d6efd; /* Blue */
+        }
+
+        /* --- Algorithm Steps --- */
+        .algo-steps h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #495057;
+        }
+
+        .algo-steps ol {
+            list-style: decimal;
+            padding-left: 20px;
+            line-height: 1.6;
+        }
+
+        /* --- Visualization Area --- */
+        .visualization {
+            margin-top: 25px;
+            border-top: 1px solid #e9ecef;
+            padding-top: 20px;
+        }
+
+        .tree {
+            position: relative;
+            width: 100%;
+            height: 300px; /* Fixed height for tree area */
+            margin-bottom: 20px;
+        }
+        
+        /* SVG Line Styling (Edges) */
+        .tree-lines {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        /* Keyframes to 'draw' the edge */
+        @keyframes traverse-edge {
+            from { stroke-dashoffset: 150; stroke: #adb5bd; } /* Grey before visit */
+            to { stroke-dashoffset: 0; stroke: #198754; } /* Green when visited */
+        }
+
+        .edge {
+            stroke: #adb5bd; /* Default grey */
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-dasharray: 150; /* Set a dash length larger than the line */
+            stroke-dashoffset: 150; /* Start hidden */
+            fill: none;
+            /* Apply animation using the custom delay variable */
+            animation: traverse-edge 0.5s linear forwards;
+            animation-delay: var(--delay);
+        }
+        
+        /* Node Styling */
+        .node {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            border: 2px solid #adb5bd;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 1.1rem;
+            z-index: 10;
+            transition: all 0.3s;
+            /* Center the element based on its position */
+            transform: translate(-50%, -50%); 
+        }
+
+        /* Keyframes to highlight the node */
+        @keyframes visit-node {
+            0% {
+                background-color: white;
+                border-color: #adb5bd;
+                color: #343a40;
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                background-color: #198754; /* Highlight color: Green */
+                color: white;
+                transform: translate(-50%, -50%) scale(1.2);
+                box-shadow: 0 0 15px rgba(25, 135, 84, 0.7);
+            }
+            100% {
+                background-color: #198754;
+                border-color: #198754;
+                color: white;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+        
+        .node {
+            /* Apply animation using the custom delay variable */
+            animation: visit-node 1.2s ease-out forwards;
+            animation-delay: var(--delay);
+        }
+
+        .node .order {
+            position: absolute;
+            bottom: -20px;
+            right: -5px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #495057;
+            opacity: 0;
+            transition: opacity 0.5s;
+            /* The 'forwards' in the keyframe ensures the node keeps the visited color */
+        }
+        
+        /* Show order number after the node is fully visited */
+        .node:nth-child(n) .order {
+            animation: show-order 0.5s ease-out forwards;
+            animation-delay: calc(var(--delay) + 1s);
+        }
+
+        @keyframes show-order {
+            to { opacity: 1; }
+        }
+
+        .traversal-order {
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-align: center;
+            color: #0d6efd;
+            padding: 10px;
+            background-color: #eaf3ff;
+            border-radius: 8px;
+        }
+
+    
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="container">
+                <a href="/index.html" class="logo">AlgoScape</a>
+                <input type="checkbox" id="menu-toggle" class="menu-toggle">
+                <label for="menu-toggle" class="menu-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+                &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                <ul class="nav-menu">
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/algorithms.html" class="active">Algorithms</a></li>
+                    <li><a href="/showcase.html">Showcase</a></li>
+                    <li><a href="/tutorials.html">Tutorials</a></li>
+                    <li><a href="/about.html">About</a></li>
+                    <li><a href="/contact.html">Contact</a></li>
+                    <li><a href=" https://coderarmy.in/#home" target="_blank" class="cta-button">Join CoderArmy</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="header-content">
+            <h1>Algorithm Visualizations</h1>
+            <p>Watch algorithms come to life through pure CSS</p>
+        </div>
+    </header>
+
+    <section class="algo-page">
+        <div class="container">
+            <h1 class="page-title">Algorithm Visualizations</h1>
+            <p class="page-subtitle">Select an algorithm to see it come to life through CSS</p>
+
+            <div class="algo-tabs">
+                <input type="radio" id="bubble" name="algo" checked>
+                <input type="radio" id="binary" name="algo">
+                <input type="radio" id="dfs" name="algo">
+
+                <div class="tab-buttons">
+                    <label for="bubble" class="tab-btn">Bubble Sort</label>
+                    <label for="binary" class="tab-btn">Binary Search</label>
+                    <label for="dfs" class="tab-btn">DFS Traversal</label>
+                </div>
+
+                <div class="tab-content bubble-sort">
+                    <div class="algo-card">
+                        <div class="algo-header">
+                            <div>
+                                <h2>Bubble Sort</h2>
+                                <p>Compare adjacent elements and swap if in wrong order</p>
+                            </div>
+                            <span class="complexity">O(n²)</span>
+                        </div>
+                        <div class="algo-steps">
+                            <h4>Algorithm Steps:</h4>
+                            <ol>
+                                <li>Compare first two elements</li>
+                                <li>If first > second, swap them</li>
+                                <li>Move to next pair and repeat</li>
+                                <li>Largest element "bubbles" to the end</li>
+                                <li>Repeat for remaining elements</li>
+                            </ol>
+                        </div>
+                        
+                    
+                <div class="wrap">
+<h1>Bubble Sort — pure HTML + CSS visualization</h1>
+<p>Fixed example array: <strong>[5, 3, 8, 1, 6]</strong>. This single-file demo uses only HTML and CSS. The animation changes each element's <code>order</code> in steps to show how bubble sort swaps values until sorted.</p>
+
+
+<div class="array" aria-hidden="false">
+<!-- Bars: value classes (vX) control the animation keyframes. h-X classes control visual height. -->
+<div class="bar v5 h-5"><div class="val">5</div></div>
+<div class="bar v3 h-3"><div class="val">3</div></div>
+<div class="bar v8 h-8"><div class="val">8</div></div>
+<div class="bar v1 h-1"><div class="val">1</div></div>
+<div class="bar v6 h-6"><div class="val">6</div></div>
+</div>
+
+
+<div class="indices" aria-hidden="true">
+<div class="idx">0</div>
+<div class="idx">1</div>
+<div class="idx">2</div>
+<div class="idx">3</div>
+<div class="idx">4</div>
+</div>
+
+
+<div class="meta">
+<div style="color:var(--muted);font-size:13px">Animation: <strong>bubble sort passes (looped)</strong></div>
+<div><button class="btn" onclick="location.reload()">Restart</button></div>
+</div>
+</div>
+</div>
+                </div>
+           
+
+
+                 <div class="tab-content binary-search">
+                   <!-- <div class="algo-card">
+                        <div class="algo-header">
+                            <div>
+                                <h2>Binary Search</h2>
+                                <p>Find target (65) by halving the search space</p>
+                            </div>
+                            <span class="complexity complexity-log">O(log n)</span>
+                        </div>
+                        <div class="algo-steps">
+                            <h4>Algorithm Steps:</h4>
+                            <ol>
+                                <li>Start with sorted array, find middle (50)</li>
+                                <li>If target (65) > middle, discard left half</li>
+                                <li>If target < middle, discard right half</li>
+                                <li>Repeat until found</li>
+                                <li>Target found at index 4!</li>
+                            </ol>
+                        </div>
+                        <div class="visualization">
+                            <div class="search-array">
+                                <div class="search-box" style="--delay: 0.8s;">10</div>
+                                <div class="search-box" style="--delay: 0.8s;">25</div>
+                                <div class="search-box" style="--delay: 0.8s;">35</div>
+                                <div class="search-box mid" style="--delay: 1.6s;">50</div>
+                                <div class="search-box found" style="--delay: 4s;">65</div>
+                                <div class="search-box" style="--delay: 2.4s;">75</div>
+                                <div class="search-box" style="--delay: 2.4s;">85</div>
+                                <div class="search-box" style="--delay: 2.4s;">95</div>
+                            </div>
+                        </div> -->
+                                 <div class="algo-card">
+                        <div class="algo-header">
+                            <div>
+                                <h2>Binary Search</h2>
+                                <p>Find target (65) by halving the search space</p>
+                            </div>
+                            <span class="complexity complexity-log">O(log n)</span>
+                        </div>
+                        <div class="algo-steps">
+                            <h4>Algorithm Steps:</h4>
+                            <ol>
+                                <li>Start with sorted array, find middle (50)</li>
+                                <li>If target (65) > middle, discard left half</li>
+                                <li>If target < middle, discard right half</li>
+                                <li>Repeat until found</li>
+                                <li>Target found at index 4!</li>
+                            </ol>
+                        </div>
+                        <div class="visualization">
+                            <div class="search-array">
+                                <div class="search-box" style="--delay: 0.8s;">10</div>
+                                <div class="search-box" style="--delay: 0.8s;">25</div>
+                                <div class="search-box" style="--delay: 0.8s;">35</div>
+                                <div class="search-box mid" style="--delay: 1.6s;">50</div>
+                                <div class="search-box found" style="--delay: 4s;">65</div>
+                                <div class="search-box" style="--delay: 2.4s;">75</div>
+                                <div class="search-box" style="--delay: 2.4s;">85</div>
+                                <div class="search-box" style="--delay: 2.4s;">95</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                
+    <div class="tab-content dfs-traversal">
+        <div class="algo-card">
+            <div class="algo-header">
+                <div>
+                    <h2>DFS Tree Traversal</h2>
+                    <p>Explore depth-first: go deep before siblings</p>
+                </div>
+                <span class="complexity complexity-graph">O(V+E)</span>
+            </div>
+
+            <div class="algo-steps">
+                <h4>Algorithm Steps (Pre-Order Traversal):</h4>
+                <ol>
+                    <li>Start at root A, mark visited.</li>
+                    <li>Visit first child B (go left).</li>
+                    <li>Visit B's child D (deeper).</li>
+                    <li>Backtrack to B, visit E.</li>
+                    <li>Backtrack to A, visit C.</li>
+                    <li>Visit C's children F and G.</li>
+                    <li>Order: A → B → D → E → C → F → G</li>
+                </ol>
+            </div>
+
+            <div class="visualization">
+                <div class="tree">
+                    <!-- SVG lines for edges, placed absolutely -->
+                    <!-- Note: x/y coordinates are relative to the 400x300 viewBox -->
+                    <svg class="tree-lines" viewBox="0 0 400 300">
+                        <!-- A (200, 50) to B (120, 120) -->
+                        <line x1="200" y1="50" x2="120" y2="120" class="edge" style="--delay: 0.3s;"/>
+                        <!-- A (200, 50) to C (280, 120) -->
+                        <line x1="200" y1="50" x2="280" y2="120" class="edge" style="--delay: 3s;"/>
+                        <!-- B (120, 120) to D (80, 200) -->
+                        <line x1="120" y1="120" x2="80" y2="200" class="edge" style="--delay: 0.8s;"/>
+                        <!-- B (120, 120) to E (160, 200) -->
+                        <line x1="120" y1="120" x2="160" y2="200" class="edge" style="--delay: 1.8s;"/>
+                        <!-- C (280, 120) to F (240, 200) -->
+                        <line x1="280" y1="120" x2="240" y2="200" class="edge" style="--delay: 3.5s;"/>
+                        <!-- C (280, 120) to G (320, 200) -->
+                        <line x1="280" y1="120" x2="320" y2="200" class="edge" style="--delay: 4.5s;"/>
+                    </svg>
+
+                    <!-- Nodes: Positioned using absolute CSS based on the SVG coordinates -->
+                    <!-- A: Root -->
+                    <div class="node" style="left: 50%; top: 50px; --delay: 0s;">A<span class="order">#1</span></div>
+                    <!-- B: Left Child -->
+                    <div class="node" style="left: calc(50% - 80px); top: 120px; --delay: 0.5s;">B<span class="order">#2</span></div>
+                    <!-- C: Right Child -->
+                    <div class="node" style="left: calc(50% + 80px); top: 120px; --delay: 3s;">C<span class="order">#5</span></div>
+                    <!-- D: B's Left Child -->
+                    <div class="node" style="left: calc(50% - 120px); top: 200px; --delay: 1s;">D<span class="order">#3</span></div>
+                    <!-- E: B's Right Child -->
+                    <div class="node" style="left: calc(50% - 40px); top: 200px; --delay: 2s;">E<span class="order">#4</span></div>
+                    <!-- F: C's Left Child -->
+                    <div class="node" style="left: calc(50% + 40px); top: 200px; --delay: 3.5s;">F<span class="order">#6</span></div>
+                    <!-- G: C's Right Child -->
+                    <div class="node" style="left: calc(50% + 120px); top: 200px; --delay: 4.5s;">G<span class="order">#7</span></div>
+                </div>
+
+                <div class="traversal-order">
+                    Traversal Order: A → B → D → E → C → F → G
+                </div>
+            </div>
+        </div>
+    </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="gradient-line"></div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>AlgoScape</h3>
+                    <p>Visual Algorithms in Motion</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/sujal-010/Hackathon-miniproj1">GitHub</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+                <div class="footer-info">
+                    <p>Built for STRIKE Hackathon</p>
+                    <p>© 2025 CoderArmy</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
