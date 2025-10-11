@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithm Showcase — AlgoScape</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="main-header">
+        <nav class="navbar">
+            <div class="container">
+                <a href="/index.html" class="logo">AlgoScape</a>
+                <input type="checkbox" id="menu-toggle" class="menu-toggle">
+                <label for="menu-toggle" class="menu-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </label>
+                &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                <ul class="nav-menu">
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/algorithms.html">Algorithms</a></li>
+                    <li><a href="/showcase.html" class="active">Showcase</a></li>
+                    <li><a href="/tutorials.html">Tutorials</a></li>
+                    <li><a href="/about.html">About</a></li>
+                    <li><a href="/contact.html">Contact</a></li>
+                    <li><a href=" https://coderarmy.in/#home" target="_blank" class="cta-button">Join CoderArmy</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="header-content">
+            <h1>Algorithm Showcase</h1>
+            <p>Explore our collection of visual algorithm demonstrations</p>
+        </div>
+    </header>
+
+    <section class="showcase-page">
+        <div class="container">
+            <div class="showcase-categories">
+                <input type="radio" id="sorting" name="category" checked>
+                <input type="radio" id="searching" name="category">
+                <input type="radio" id="graph" name="category">
+
+                <div class="category-tabs">
+                    <label for="sorting" class="category-tab">Sorting Algorithms</label>
+                    <label for="searching" class="category-tab">Searching Algorithms</label>
+                    <label for="graph" class="category-tab">Graph Algorithms</label>
+                </div>
+
+                <div class="category-content sorting-algos">
+                    <div class="showcase-grid">
+                        <div class="showcase-card">
+                            <div class="card-header">
+                                <h3>Bubble Sort</h3>
+                                <span class="badge">O(n²)</span>
+                            </div>
+                            <div class="mini-viz">
+                                <div class="mini-bar" style="height: 40%;"></div>
+                                <div class="mini-bar" style="height: 70%;"></div>
+                                <div class="mini-bar" style="height: 30%;"></div>
+                                <div class="mini-bar" style="height: 90%;"></div>
+                                <div class="mini-bar" style="height: 50%;"></div>
+                            </div>
+                            <p>Compare adjacent elements and swap</p>
+                            <a href="https://youtu.be/V3vM_m2iFtk?si=4ywhI0vhGXX9pYq-" target="_blank" class="card-link">View Demo →</a>
+                        </div>
+
+                        <div class="showcase-card">
+                            <div class="card-header">
+                                <h3>Quick Sort</h3>
+                                <span class="badge badge-fast">O(n log n)</span>
+                            </div>
+                            <div class="mini-viz">
+                                <div class="mini-bar partition" style="height: 60%;"></div>
+                                <div class="mini-bar" style="height: 30%;"></div>
+                                <div class="mini-bar partition" style="height: 80%;"></div>
+                                <div class="mini-bar" style="height: 45%;"></div>
+                                <div class="mini-bar partition" style="height: 95%;"></div>
+                            </div>
+                            <p>Divide and conquer with pivot</p>
+                            <a href="#" class="card-link">Coming Soon →</a>
+                        </div>
+
+                        <div class="showcase-card">
+                            <div class="card-header">
+                                <h3>Merge Sort</h3>
+                                <span class="badge badge-fast">O(n log n)</span>
+                            </div>
+                            <div class="mini-viz">
+                                <div class="mini-bar merge" style="height: 50%;"></div>
+                                <div class="mini-bar merge" style="height: 70%;"></div>
+                                <div class="mini-bar" style="height: 35%;"></div>
+                                <div class="mini-bar" style="height: 85%;"></div>
+                                <div class="mini-bar merge" style="height: 60%;"></div>
+                            </div>
+                            <p>Split and merge recursively</p>
+                            <a href="#" class="card-link">Coming Soon →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-content searching-algos">
+                    <div class="showcase-grid">
+                        <div class="showcase-card">
+                            <div class="card-header">
+                                <h3>Binary Search</h3>
+                                <span class="badge badge-fast">O(log n)</span>
+                            </div>
+                            <div class="mini-viz search-viz">
+                                <div class="search-item faded">10</div>
+                                <div class="search-item faded">25</div>
+                                <div class="search-item mid-item">50</div>
+                                <div class="search-item found-item">65</div>
+                                <div class="search-item">85</div>
+                            </div>
+                            <p>Halve search space efficiently</p>
+                            <a href="https://youtu.be/0Hwpzd-bSck?si=qgDmWt00YYSl3mGb" target="_blank" class="card-link">View Demo →</a>
+                        </div>
+
+                        <div class="showcase-card">
+                            <div class="card-header">
+                                <h3>Linear Search</h3>
+                                <span class="badge">O(n)</span>
+                            </div>
+                            <div class="mini-viz search-viz">
+                                <div class="search-item">15</div>
+                                <div class="search-item active-item">32</div>
+                                <div class="search-item">47</div>
+                                <div class="search-item">58</div>
+                                <div class="search-item">76</div>
+                            </div>
+                            <p>Check each element sequentially</p>
+                            <a href="#" class="card-link">Coming Soon →</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-content graph-algos">
+                    <div class="showcase-grid">
+
+
+
+                        <div class="showcase-card">
+
+                            <div class="card-header">
+                                <h3>BFS Traversal</h3>
+                                <span class="badge badge-graph">O(V+E)</span>
+                            </div>
+                            <div class="mini-viz tree-viz">
+                                <div class="mini-node bfs" style="left: 50%; top: 20%;">A</div>
+                                <div class="mini-node bfs" style="left: 30%; top: 60%;">B</div>
+                                <div class="mini-node bfs" style="left: 70%; top: 60%;">C</div>
+                            </div>
+                            <p>Explore breadth-first by levels</p>
+                            <a href="https://youtu.be/Vtu7qgF0ksw?si=AU-z1JPFbPiYxDvt" target="_blank" class="card-link">View Demo →</a>
+
+                            
+                        </div>
+
+
+
+                        <div class="showcase-card">
+                            <div class="card-header">
+                                <h3>DFS Traversal</h3>
+                                <span class="badge badge-graph">O(V+E)</span>
+                            </div>
+                            <div class="mini-viz tree-viz">
+                                <div class="mini-node" style="left: 50%; top: 20%;">A</div>
+                                <div class="mini-node" style="left: 30%; top: 60%;">B</div>
+                                <div class="mini-node" style="left: 70%; top: 60%;">C</div>
+                            </div>
+                            <p>Explore depth-first recursively</p>
+                            <a href="/algorithms.html" class="card-link">Coming Soon →</a>
+                        </div>
+
+
+
+                        <div class="showcase-card">
+                            <div class="card-header">
+                                <h3>Dijkstra's</h3>
+                                <span class="badge badge-graph">O(E log V)</span>
+                            </div>
+                            <div class="mini-viz tree-viz">
+                                <div class="mini-node dijkstra" style="left: 50%; top: 20%;">0</div>
+                                <div class="mini-node" style="left: 30%; top: 60%;">5</div>
+                                <div class="mini-node" style="left: 70%; top: 60%;">3</div>
+                            </div>
+                            <p>Find shortest path efficiently</p>
+                            <a href="#" class="card-link">Coming Soon →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="gradient-line"></div>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>AlgoScape</h3>
+                    <p>Visual Algorithms in Motion</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/sujal-010/Hackathon-miniproj1">GitHub</a>
+                    <a href="#">Twitter</a>
+                    <a href="#">LinkedIn</a>
+                </div>
+                <div class="footer-info">
+                    <p>Built for STRIKE Hackathon</p>
+                    <p>© 2025 CoderArmy</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
