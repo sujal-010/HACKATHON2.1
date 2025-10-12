@@ -8,7 +8,50 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styler.css">
     <style>
-        
+        .navbar a {
+  text-decoration: none;
+  color: #00cfff;
+  font-weight: 600;
+  padding: 10px 24px;
+  border: 2px solid #00cfff;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  background: transparent;
+}
+
+/* Hover Glow Effect */
+.navbar a:hover {
+  background: #00cfff;
+  color: #000;
+  box-shadow: 0 0 15px #00cfff, 0 0 30px #00cfff inset;
+  transform: translateY(-2px);
+}
+
+        .navbar a:first-child {
+  background: #00cfff;
+  color: #000;
+  border: 2px solid #00cfff;
+}
+
+.navbar a:first-child:hover {
+  background: transparent;
+  color: #00cfff;
+  box-shadow: 0 0 15px #00cfff;
+}
+
+.navbar a:last-child {
+  background: transparent;
+  border: 2px solid #00cfff;
+  color: #00cfff;
+}
+
+.navbar a:last-child:hover {
+  background: #00cfff;
+  color: #000;
+  box-shadow: 0 0 15px #00cfff;
+}
+
     </style>
 </head>
 <body>
@@ -20,19 +63,19 @@
                 <a href="index.html" class="logo">DISPLAY:FLEX</a>
                 
                 
-                <div class="nav-links" style="overflow: scroll;">
+                <div class="navbar" >
                     <!-- <a href="#work">Work</a> -->
-                    <a href="home-work.html">HW</a>
+                    <a href="home-work.html" >HW</a>
                     <!-- <a href="#contact">Contact</a> -->
                     <a href="/HACKATHON2.1/index.html">Return Back</a>
                 </div>
 
                 
-                <button class="mobile-menu-button"  aria-label="Toggle navigation">
+                <!-- <button class="mobile-menu-button"  aria-label="Toggle navigation">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
-                </button>
+                </button> -->
             </nav>
         </div>
     </header>
@@ -70,6 +113,8 @@
         </section>
         
         </div>
+        <br><br><br>
+        <br><br><br>
         <br><br><br>
 
        <marquee style=" background-color: yellow; color: black; font-weight: 600;">*This Page is currently not responsive*   &nbsp;*This Page is currently not responsive* &nbsp; </marquee>
