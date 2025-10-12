@@ -1,0 +1,182 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+.flag{
+    height: 720px;
+    width: 1560px;
+    border: 2px solid black;
+    margin: auto;
+    /* margin-top: 20px; */
+    /* box-shadow: 0 0 20px 5px black; */   
+    overflow: hidden;
+    position: sticky;
+    
+    /* position: relative; */
+    
+}
+.top{
+    height: 240px;
+    width: 1560px;
+    background-color:#FF7722;
+    /* border: 1px solid black; */
+        z-index: 20;
+    position: relative;
+    border: 2px solid black;
+    left: 0;
+    box-shadow: 0 0 10px 2px rgb(255, 119, 34);
+}
+.middle{
+    color: aquamarine;
+    height:240px;
+    width: 1560px;
+    background-color: rgb(250, 250, 250);
+    /* border: 2px solid black; */
+    box-shadow: 0 0 10px 2px rgb(255, 255, 255);
+    position: relative;
+}
+
+.bottom{
+    top:00px;
+    position: relative;
+    height: 240px;
+    width: 1560px;
+    background-color: #128807;
+    border: 2px solid black;
+    z-index: 20;
+    margin: 0;
+    left: 0;
+    box-shadow: 0 0 10px 2px rgb(18, 136, 7);
+    top: 240px;
+}
+
+.wheel{
+    height: 220px;
+    width: 220px;
+    border-radius: 50%;
+    background-color: rgb(119, 235, 248);
+    /* display: flex;
+    justify-content: center; */
+    align-items: center;
+    top: 10px;
+    left: 670px;
+    position: absolute;
+    border: 1px solid blue;
+    box-shadow: 0 0 20px 10px rgb(0, 213, 255);
+    animation-name: wheel-spin;    
+     /* animation-name:bounce ; */
+    animation-duration: 3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    transition: all 1s ;
+    z-index: 1;
+}
+/* @keyframes bounce { */
+    /* 0%{
+        transform: translateX(0px) translateY(25px) rotate(0deg);
+    }
+    10%{
+        transform: translateX(50px) rotate(30deg);
+    }
+    20%{
+        transform: translateX(100px) translateY(25px) rotate(60deg);
+    }
+    30%{
+        transform: translateX(200px) rotate(90deg);
+    }
+    40%{
+        transform: translateX(250px) translateY(25px) rotate(120deg);
+    }
+    50%{
+        transform: translateX(300px) rotate(150deg);
+
+    }
+    60%{
+        transform: translateX(350px) translateY(0px) rotate(180deg);
+    }
+    70%{
+        transform: translateX(400px) translateY(25px) rotate(210deg);
+    }
+    80%{
+        transform: translateX(500px) translateY(0px) rotate(240deg);
+    }
+    90%{
+        transform: translateX(600px) translateY(25px) rotate(270deg);
+    }
+    100%{
+        transform: translateX(750px) translateY(0px) rotate(360deg);
+} */
+.wheel:hover{
+    animation-play-state:running;
+    box-shadow: 0 0 30px 15px rgb(0, 213, 255);
+    transform: scale(1.1);
+}
+
+.wheel .line {
+    height: 100%;
+    width: 1px;
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    background: darkblue;
+    
+
+}
+@keyframes wheel-spin{
+    from{
+        tranform: rotate(0deg) ;
+
+    }
+    to{
+        transform: rotate(360deg) ;
+}}
+
+.line:nth-child(1){
+    transform: rotate(15deg);
+}
+.line:nth-child(2){
+    transform: rotate(30deg);
+}
+.line:nth-child(3){
+    transform: rotate(45deg);
+}
+.line:nth-child(4){
+    transform: rotate(60deg);
+}
+.line:nth-child(5){
+    transform: rotate(75deg);
+}
+.line:nth-child(6){
+    transform: rotate(90deg);
+}
+.line:nth-child(7){
+    transform: rotate(105deg);
+}
+.line:nth-child(8){
+    transform: rotate(120deg);
+}
+.line:nth-child(9){
+    transform: rotate(135deg);
+}
+.line:nth-child(10){
+    transform: rotate(150deg);
+}
+.line:nth-child(11){
+    transform: rotate(165deg);
+}
+
+.line:nth-child(12){
+    transform: rotate(180deg);
+}
+.flag-stick{
+    height: 950px;
+    width: 20px;
+    background-color: rgb(69, 55, 55);
+    position: absolute;
+    /* border-left: white 5px solid; */
+    left: 0;
+    top: 0;
+    /* border: 2px solid black; */
+    z-index: 50;
+}
