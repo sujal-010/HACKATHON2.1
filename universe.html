@@ -7,6 +7,52 @@
     <link rel="stylesheet" href="universe.css">
     <link rel="stylesheet" href="styler.css">
 </head>
+<style>
+    header {
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #1e1e1e;
+      color: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    /* Back button styling */
+    .back-button {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 8px 12px;
+      border: 2px solid white;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      
+    }
+
+    .back-button:hover {
+      background-color: white;
+      color: #1e1e1e;
+      transform: translateX(-3px);
+    }
+
+    /* Arrow icon */
+    .back-button::before {
+      content: "←"; /* Unicode left arrow */
+      margin-right: 8px;
+      font-size: 1.2rem;
+    }
+
+    /* Header title */
+    h1 {
+      margin: 0;
+      margin-left: 20px;
+      font-size: 1.5rem;
+      flex-grow: 1;
+    }
+</style>
 <body>
      <!-- 1. Navigation Bar -->
     <header class="header">
@@ -15,22 +61,27 @@
                 <!-- <a href="#" class="logo" style="">DISPLAY:FLEX</a> -->
                 
                 
-                <div class="nav-links" style="transform: translateX(-190px);">
-                    <a href="#work">Work</a>
-                    <a href="/home-work.html">HW</a>
-                    <a href="#contact">Contact</a>
-                    <a href="/index.html">Return Back</a>
-                </div>
+                <!-- <div class="nav-links" style="transform: translateX(-190px);"> -->
+                    <!-- <a href="#work">Work</a> -->
+                    <!-- <a href="/home-work.html">HW</a> -->
+                    <!-- <a href="#contact">Contact</a> -->
+                    <!-- <a href="home-work.html" style="left: 0;">Return Back</a> -->
+                <!-- </div> -->
 
-                
-                <button class="mobile-menu-button" aria-label="Toggle navigation" style="transform: translateX(-190px);">
+                <a href="home-work.html" class="back-button">Back</a>
+    <h1>Current Page</h1>
+
+    
+                <!-- <button class="mobile-menu-button" aria-label="Toggle navigation" style="transform: translateX(-190px);">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
-                </button>
+                </button> -->
             </nav>
         </div>
+        <div class="return-back"></div>
     </header>
+
     <!-- <div class="uni">
         <header>
 

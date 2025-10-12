@@ -8,27 +8,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styler.css">
     <style>
-        .navbar a {
+.navbar a {
   text-decoration: none;
   color: #00cfff;
   font-weight: 600;
-  padding: 10px 24px;
+  padding: 10px 26px;
   border: 2px solid #00cfff;
-  border-radius: 30px;
-  transition: all 0.3s ease;
+  border-radius: 40px;
   font-size: 1rem;
-  background: transparent;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(6px);
+  letter-spacing: 0.5px;
+  transition: all 0.35s ease;
 }
 
-/* Hover Glow Effect */
+
 .navbar a:hover {
-  background: #00cfff;
+  background: linear-gradient(90deg, #00cfff, #007bff);
   color: #000;
-  box-shadow: 0 0 15px #00cfff, 0 0 30px #00cfff inset;
-  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(0, 207, 255, 0.6), 0 0 30px rgba(0, 207, 255, 0.4);
+  transform: translateY(-2px) scale(1.03);
 }
-
-        .navbar a:first-child {
+.navbar a:first-child {
   background: #00cfff;
   color: #000;
   border: 2px solid #00cfff;
@@ -49,8 +50,10 @@
 .navbar a:last-child:hover {
   background: #00cfff;
   color: #000;
-  box-shadow: 0 0 15px #00cfff;
+  box-shadow: 0 0 15px #00eeff;
 }
+
+
 
     </style>
 </head>
@@ -67,7 +70,7 @@
                     <!-- <a href="#work">Work</a> -->
                     <a href="home-work.html" >HW</a>
                     <!-- <a href="#contact">Contact</a> -->
-                    <a href="/HACKATHON2.1/index.html">Return Back</a>
+                    <a href="index.html">Return Back</a>
                 </div>
 
                 
