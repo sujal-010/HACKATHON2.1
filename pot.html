@@ -3,12 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Professional Portfolio</title>
+    <title>Skill Flex</title>
     <!-- Load Inter Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styler.css">
     <style>
-        
+         :root {
+            
+            --purple-glow: #8a2be2;
+         
+        }
+.navbar a {
+  text-decoration: none;
+  color: #00cfff;
+  font-weight: 600;
+  padding: 10px 26px;
+  border: 2px solid #00cfff;
+  border-radius: 40px;
+  font-size: 1rem;
+  background: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(6px);
+  letter-spacing: 0.5px;
+  transition: all 0.35s ease;
+}
+
+
+.navbar a:hover {
+  background: linear-gradient(90deg, #00cfff, #007bff);
+  color: #000;
+  box-shadow: 0 0 15px rgba(0, 207, 255, 0.6), 0 0 30px rgba(0, 207, 255, 0.4);
+  transform: translateY(-2px) scale(1.03);
+}
+.navbar a:first-child {
+  background: #00cfff;
+  color: #000;
+  border: 2px solid #00cfff;
+}
+
+.navbar a:first-child:hover {
+  background: transparent;
+  color: #00cfff;
+  box-shadow: 0 0 15px #00cfff;
+}
+
+.navbar a:last-child {
+  background: transparent;
+  border: 2px solid #00cfff;
+  color: #00cfff;
+}
+
+.navbar a:last-child:hover {
+  background: #00cfff;
+  color: #000;
+  box-shadow: 0 0 15px #00eeff;
+}
+.clan{
+    
+            position: absolute;
+          
+            z-index: 20;
+            font-size: 3em;
+            font-weight: 800;
+            letter-spacing: 5px;
+            text-shadow: 0 0 10px var(--purple-glow), 0 0 20px var(--purple-glow);
+            text-transform: uppercase;
+           
+           text-shadow: 5px 0px #5c5a5a,0 0 10px var(--purple-glow), 0 0 20px var(--purple-glow) ; 
+            animation: floatText 1s infinite alternate ease-in-out;
+        }
+
+        @keyframes floatText {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-10px); }
+        }
+
+
+
+
     </style>
 </head>
 <body>
@@ -17,26 +88,26 @@
     <header class="header">
         <div class="container">
             <nav class="nav-content">
-                <a href="#" class="logo">POTFOLIO</a>
+                <a href="index.html" class="logo">DISPLAY:FLEX</a>
                 
                 
-                <div class="nav-links">
-                    <a href="#work">Work</a>
-                    <a href="#about">About</a>
-                    <a href="#contact">Contact</a>
-                    <a href="#">Resume</a>
+                <div class="navbar" >
+                    <!-- <a href="#work">Work</a> -->
+                    <a href="home-work.html" >HW</a>
+                    <!-- <a href="#contact">Contact</a> -->
+                    <a href="index.html">Return Back</a>
                 </div>
 
                 
-                <button class="mobile-menu-button" aria-label="Toggle navigation">
+                <!-- <button class="mobile-menu-button"  aria-label="Toggle navigation">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
-                </button>
+                </button> -->
             </nav>
         </div>
     </header>
-<marquee>This Page is currently not responsive</marquee>
+
     <!-- Main Content Area -->
     <main class="container">
         
@@ -71,65 +142,10 @@
         
         </div>
         <br><br><br>
+        <br><br><br>
+        <br><br><br>
 
-        <!-- 3. Featured Projects Section -->
-        <!-- <section id="work" class="projects-section"> -->
-
-
-            
-            <!-- <div class="section-header">
-                <h2>Featured Work</h2>
-                <p>A selection of my best case studies and recent solutions.</p>
-            </div>
-            <div class="project-grid">
-
-                
-                <div class="project-card">
-                    <div class="project-image-placeholder">
-                        PROJECT VISUAL 1
-                    </div>
-                    <div class="project-info">
-                        <h3>E-commerce Platform Redesign</h3>
-                        <p>A complete UX overhaul that increased checkout conversions by 22%.</p>
-                        <a href="#" class="project-link">
-                            View Case Study
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                        </a>
-                    </div>
-                </div>
-
-               
-                <div class="project-card">
-                    <div class="project-image-placeholder">
-                        PROJECT VISUAL 2
-                    </div>
-                    <div class="project-info">
-                        <h3>Internal API Documentation Hub</h3>
-                        <p>Developed a Node.js API to streamline data access for internal teams.</p>
-                        <a href="#" class="project-link">
-                            View Case Study
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                        </a>
-                    </div>
-                </div>
-
-              
-                <div class="project-card">
-                    <div class="project-image-placeholder">
-                        PROJECT VISUAL 3
-                    </div>
-                    <div class="project-info">
-                        <h3>Mobile App UX/UI Concept</h3>
-                        <p>Designed a high-fidelity prototype focused on accessibility and ease of use.</p>
-                        <a href="#" class="project-link">
-                            View Case Study
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-        </section> -->
+       <marquee style=" background-color: yellow; color: black; font-weight: 600;">*This Page is currently not responsive*   &nbsp;*This Page is currently not responsive* &nbsp; </marquee>
         <br>
         <br>
         <br>
@@ -140,14 +156,14 @@
         <div class="banner" style="z-index: 1;">
             
            <div class="slider" style="--quantity: 8; z-index: 2;">
-             <div class="item"  style="--position: 1;"><img src="https://i.pinimg.com/1200x/d0/3f/b8/d03fb8b70f289d85098726321df467e3.jpg " style="box-shadow: 0 0 15px 10px rgb(228, 109, 11);" ></div>         
-             <div class="item"  style="--position: 2;"><img src="https://i.pinimg.com/736x/30/40/f8/3040f81c3a8394492f6b1eec14bc14f8.jpg"style="box-shadow: 0 0 15px 10px blue;" ></div>
-             <div class="item"  style="--position: 3;"><img src="https://i.pinimg.com/1200x/c9/94/07/c99407ad3ee6e24caa43dcb92936a463.jpg" ></div>
-             <div class="item"  style="--position: 4;"><img src="https://i.pinimg.com/736x/24/17/d4/2417d452dd2e1f3a1ba550cd42246567.jpg" ></div>
-             <div class="item"  style="--position: 5;"><img src="https://i.pinimg.com/1200x/7e/09/47/7e094758f8794584138ca55635356b87.jpg" ></div>         
-             <div class="item"  style="--position: 6;"><img src="https://i.pinimg.com/1200x/2a/b9/1c/2ab91c2fc1fab659f737a78880d4e954.jpg"style="box-shadow: 0 0 15px 10px blue;" ></div>
-             <div class="item"  style="--position: 7;"><img src="https://i.pinimg.com/736x/07/ce/64/07ce640e2352e67ff4f1e7a2807013d2.jpg" style="box-shadow: 0 0 15px 10px grey;"></div>
-             <div class="item"  style="--position: 8;"><img src="https://i.pinimg.com/736x/7b/a5/bb/7ba5bb547f991f3ea3f79d1427c748d7.jpg" style="box-shadow: 0 0 15px 10px rgb(147, 135, 235);" ></div>
+             <div class="item"  style="--position: 1;"><img src="https://i.pinimg.com/1200x/d0/3f/b8/d03fb8b70f289d85098726321df467e3.jpg " style="box-shadow: 0 0 20px 10px rgb(228, 109, 11);" ></div>         
+             <div class="item"  style="--position: 2;"><img src="https://i.pinimg.com/736x/30/40/f8/3040f81c3a8394492f6b1eec14bc14f8.jpg" style="box-shadow: 0 0 20px 10px  #f1b989;" ></div>
+             <div class="item"  style="--position: 3;"><img src="https://i.pinimg.com/1200x/c9/94/07/c99407ad3ee6e24caa43dcb92936a463.jpg" style="box-shadow: 0 0 20px 10px rgb(46, 93, 212);"></div>
+             <div class="item"  style="--position: 4;"><img src="https://i.pinimg.com/736x/24/17/d4/2417d452dd2e1f3a1ba550cd42246567.jpg"  style="box-shadow: 0 0 20px 10px rgb(49, 0, 241);"></div>
+             <div class="item"  style="--position: 5;"><img src="https://i.pinimg.com/1200x/7e/09/47/7e094758f8794584138ca55635356b87.jpg" style="box-shadow: 0 0 20px 10px rgb(93, 69, 229);"></div>         
+             <div class="item"  style="--position: 6;"><img src="https://i.pinimg.com/1200x/2a/b9/1c/2ab91c2fc1fab659f737a78880d4e954.jpg" style="box-shadow: 0 0 20px 10px rgb(93, 69, 229);" ></div>
+             <div class="item"  style="--position: 7;"><img src="https://i.pinimg.com/736x/07/ce/64/07ce640e2352e67ff4f1e7a2807013d2.jpg" style="box-shadow: 0 0 20px 10px grey;"></div>
+             <div class="item"  style="--position: 8;"><img src="https://i.pinimg.com/736x/7b/a5/bb/7ba5bb547f991f3ea3f79d1427c748d7.jpg" style="box-shadow: 0 0 20px 10px rgb(147, 135, 235);" ></div>
  
 
                 <!--RotateY: (positon-1)*(360deg/quantity)-->
@@ -158,12 +174,12 @@
             </div>
         </div>
             <div class="content">
-                <h1 style="position: absolute; left: 500px; background: transparent; ">
-                    &nbsp;&nbsp;&nbsp; BANKAI
+                <h1 style="position: absolute; left: 400px;  " class="clan">
+                    &nbsp;&nbsp;&nbsp; THE UNIVERSE WITHIN
                 </h1>
-                <div class="author">
+                <!-- <div class="author">
                     Sujal
-                </div>
+                </div> -->
                 <div class="model" style="z-index: 1;">
                     <img src="https://github.com/sujal-010/Hackathon-miniproj1/blob/main/1000599498-removebg-preview.png?raw=true" alt="">
                 </div>
@@ -174,7 +190,7 @@
 <br><br>
 <br><br><br>
 <div class="baka">
-    <h1>SUJAL CHETTRI</h1>
+    <h1 style="font-size: 150px;">CODER ARMY</h1>
     <video autoplay muted loop>
         <source src="https://cdn.pixabay.com/video/2023/10/02/183279-870457579_large.mp4" type="video/mp4">
     </video>
@@ -200,15 +216,18 @@
 
             <div class="social-links">
                 <!-- Social Icons -->
-                <a href="sujal@gmail.com" title="Email">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                </a>
-                <a href="" target="_blank" title="LinkedIn">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5V5c0-2.76-2.24-5-5-5zM8 19H5V8h3v11zM6.5 6.73c-.96 0-1.73-.77-1.73-1.73s.77-1.73 1.73-1.73 1.73.77 1.73 1.73-.77 1.73-1.73 1.73zM20 19h-3v-5.62c0-3.37-4-3.5-4 0V19h-3V8h3v1.76s1.61-2.04 4-2.04c2.67 0 5 2.07 5 5.82V19z"/></svg>
-                </a>
-                <a href="" target="_blank" title="GitHub">
-                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.087-.731.084-.678.084-.678 1.205.084 1.839 1.237 1.839 1.237 1.07 1.835 2.809 1.305 3.495.998.108-.77.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.873.118 3.176.771.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.923.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 22.185 24 17.684 24 12c0-6.627-5.373-12-12-12z"/></svg>
-                </a>
+                <!-- <div class="footer-links"> -->
+                    <div style="height: 50px; overflow: hidden; border-radius: 10%;">
+                    <a target="_blank" href="https://github.com/sujal-010/Hackathon2.1"><img height="50px" src="https://i.pinimg.com/1200x/b5/1b/78/b51b78ecc9e5711274931774e433b5e6.jpg"> </a> &nbsp;
+                    <a  href="#"><img height="50px" src="https://i.pinimg.com/736x/ad/fa/ea/adfaea6dcc1b54dfd3461b1bd386671a.jpg"></a>&nbsp;
+                    <a target="_blank" href="www.linkedin.com/in/sujal-chettri-689537347"><img height="50px" src="https://i.pinimg.com/736x/8a/15/b6/8a15b646a6856d20854c2ac22623d971.jpg" ></a>
+                </div>
+                <br>
+                <br>
+                <!-- <div class="footer-info">
+                    <p>Built for STRIKE Hackathon</p>
+                    <p>© 2025 CoderArmy</p>
+                </div> -->
             </div>
 
             <p class="copyright">
