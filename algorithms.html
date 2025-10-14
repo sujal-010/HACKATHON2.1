@@ -308,6 +308,29 @@
         }
 
     
+    /* Mobile responsiveness overrides (scoped to this page) */
+    @media (max-width: 768px) {
+        html, body { max-width: 100%; overflow-x: hidden; }
+        body { display: block; place-items: initial; }
+
+        .container { max-width: 100% !important; width: 100%; padding-left: 12px; padding-right: 12px; }
+        .header-content { padding-left: 12px; padding-right: 12px; }
+        .algo-page .container { padding-left: 12px; padding-right: 12px; }
+
+        .algo-tabs .tab-buttons { display: flex; flex-wrap: wrap; gap: 8px; }
+        .algo-tabs .tab-buttons .tab-btn { flex: 1 1 auto; text-align: center; }
+
+        .wrap { width: 100%; max-width: 100%; padding: 16px; }
+        .array { min-height: 220px; }
+        .indices { gap: 8px; }
+        .meta { flex-direction: column; gap: 8px; align-items: flex-start; }
+
+        .tree { height: 260px; }
+        .node { width: 34px; height: 34px; font-size: 1rem; }
+    }
+
+    @media (max-width: 520px) { :root { --bar-width: 40px; --gap: 8px; } }
+
     </style>
 </head>
 <body>
